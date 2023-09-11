@@ -1,13 +1,11 @@
-import 'package:dicoding_restaurant_app/models/restaurant.dart';
 import 'package:dicoding_restaurant_app/widgets/atoms/makanan_card.dart';
 import 'package:flutter/material.dart';
-import 'package:logger/logger.dart';
 
 class MakananMinumanGridView extends StatelessWidget {
   final List<dynamic> listMakanan;
-  Logger logger = Logger();
+  ScrollController? scrollController;
 
-  MakananMinumanGridView({required this.listMakanan, Key? key})
+  MakananMinumanGridView({required this.listMakanan, this.scrollController, Key? key})
       : super(key: key);
 
   @override
@@ -17,15 +15,16 @@ class MakananMinumanGridView extends StatelessWidget {
         child: Text("No data available"),
       );
     }
-    return SizedBox(
-      height: listMakanan.length * 100,
-      child: GridView.count(
-        physics: const NeverScrollableScrollPhysics(),
-        crossAxisCount: 2,
-        crossAxisSpacing: 10,
-        mainAxisSpacing: 10,
-        children: listMakanan.map((e) => MakananCard(nama: e.name, harga: 100, gambar: 'http://via.placeholder.com/640x360')).toList(),
-      ),
+    return GridView.count(
+      shrinkWrap: true,
+      primary: true,
+      controller: scrollController,
+      scrollDirection: Axis.vertical,
+      physics: const NeverScrollableScrollPhysics(),
+      crossAxisCount: 2,
+      crossAxisSpacing: 10,
+      mainAxisSpacing: 10,
+      children: listMakanan.map((e) => MakananCard(nama: e.name, harga: 100, gambar: 'http://via.placeholder.com/640x360')).toList(),
     );
   }
 }
