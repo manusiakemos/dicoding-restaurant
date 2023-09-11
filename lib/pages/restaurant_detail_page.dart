@@ -59,9 +59,6 @@ class RestaurantDetailPage extends StatelessWidget {
                       Text(restaurant.city),
                     ],
                   ),
-                  const SizedBox(
-                    height: 4.0,
-                  ),
                   Flex(
                     direction: Axis.horizontal,
                     children: [
@@ -70,6 +67,13 @@ class RestaurantDetailPage extends StatelessWidget {
                       const SizedBox(width: 4.0),
                       Text(restaurant.rating.toString()),
                     ],
+                  ),
+                  const SizedBox(
+                    height: 4.0,
+                  ),
+                  Text(restaurant.description),
+                  const SizedBox(
+                    height: 4.0,
                   ),
                   const SizedBox(height: 32.0),
                   const Heading(title: 'Makanan', size: "md"),
