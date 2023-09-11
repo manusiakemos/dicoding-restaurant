@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 
 class MakananMinumanGridView extends StatelessWidget {
   final List<dynamic> listMakanan;
-  ScrollController? scrollController;
 
-  MakananMinumanGridView({required this.listMakanan, this.scrollController, Key? key})
+  MakananMinumanGridView({required this.listMakanan, Key? key})
       : super(key: key);
 
   @override
@@ -18,7 +17,6 @@ class MakananMinumanGridView extends StatelessWidget {
     return GridView.count(
       shrinkWrap: true,
       primary: true,
-      controller: scrollController,
       scrollDirection: Axis.vertical,
       physics: const NeverScrollableScrollPhysics(),
       crossAxisCount: 2,

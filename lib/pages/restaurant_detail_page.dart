@@ -11,11 +11,9 @@ class RestaurantDetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ScrollController? scrollController;
     return Scaffold(
       body: SafeArea(
         child: NestedScrollView(
-          controller: scrollController,
           headerSliverBuilder: (BuildContext context, bool isScrolled) {
             return [
               SliverAppBar(
@@ -42,7 +40,6 @@ class RestaurantDetailPage extends StatelessWidget {
             ];
           },
           body: SingleChildScrollView(
-            controller: scrollController,
             child: Padding(
               padding: const EdgeInsets.all(16),
               child: Column(
@@ -83,7 +80,6 @@ class RestaurantDetailPage extends StatelessWidget {
                   const SizedBox(height: 8.0),
                   MakananMinumanGridView(
                     listMakanan: restaurant.menus.foods,
-                    scrollController: scrollController,
                   ),
                   const SizedBox(
                     height: 16.0,
@@ -92,7 +88,6 @@ class RestaurantDetailPage extends StatelessWidget {
                   const SizedBox(height: 8.0),
                   MakananMinumanGridView(
                     listMakanan: restaurant.menus.drinks,
-                    scrollController: scrollController,
                   ),
                 ],
               ),
