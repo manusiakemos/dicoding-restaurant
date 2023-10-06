@@ -1,3 +1,4 @@
+import 'package:dicoding_restaurant_app/common/styles.dart';
 import 'package:flutter/material.dart';
 
 class Heading extends StatelessWidget {
@@ -20,11 +21,11 @@ class Heading extends StatelessWidget {
 
     return Text(
       title,
-      style: TextStyle(
-        color: Colors.black87,
+      style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+        color: mutedColor,
         fontWeight: FontWeight.bold,
         fontSize: fontSize,
-      ),
+      )
     );
   }
 }

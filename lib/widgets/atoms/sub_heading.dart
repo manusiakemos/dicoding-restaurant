@@ -11,7 +11,7 @@ class SubHeading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(title,style: const TextStyle(
-        color: Colors.black54,
+        color: Colors.white,
         fontWeight: FontWeight.normal,
     ));
   }
