@@ -1,4 +1,3 @@
-import 'package:dicoding_restaurant_app/common/styles.dart';
 import 'package:flutter/material.dart';
 
 class Heading extends StatelessWidget {
@@ -21,7 +20,7 @@ class Heading extends StatelessWidget {
 
     return Text(
       title,
-      style: myTextTheme.headlineLarge?.copyWith(
+      style: Theme.of(context).textTheme.headlineLarge?.copyWith(
         color: Colors.white,
         fontWeight: FontWeight.bold,
         fontSize: fontSize,

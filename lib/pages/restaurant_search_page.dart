@@ -4,7 +4,6 @@ import 'package:dicoding_restaurant_app/models/enum_state.dart';
 import 'package:dicoding_restaurant_app/models/restaurant.dart';
 import 'package:dicoding_restaurant_app/providers/search_restaurant_provider.dart';
 import 'package:dicoding_restaurant_app/utils/debouncer.dart';
-import 'package:dicoding_restaurant_app/widgets/atoms/heading.dart';
 import 'package:dicoding_restaurant_app/widgets/atoms/restaurant_card.dart';
 import 'package:dicoding_restaurant_app/widgets/atoms/text_input.dart';
 import 'package:dicoding_restaurant_app/widgets/molecules/search_loading.dart';
@@ -76,11 +75,11 @@ class _RestaurantSearchPageState extends State<RestaurantSearchPage> {
             icon: const Icon(Icons.arrow_back_ios),
           ),
         ),
-        title: const Heading(
-          title: 'Search Coffee',
-          size: 'md',
+        title: Text(
+          'Search Coffee',
+          style: myTextTheme.titleLarge?.copyWith(color: Colors.white),
         ),
-        centerTitle: false,
+        centerTitle: true,
       ),
       body: ChangeNotifierProvider<SearchRestaurantProvider>(
         create: (BuildContext context) {

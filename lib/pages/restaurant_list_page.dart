@@ -19,14 +19,16 @@ class RestaurantListPage extends StatelessWidget {
         if (state.state == ResultState.loading) {
           return const Center(child: CircularProgressIndicator());
         } else if (state.state == ResultState.hasData) {
-          return ListView.builder(
-            shrinkWrap: true,
-            itemCount: state.restaurantResult.restaurants.length,
-            itemBuilder: (context, index) {
-              Restaurant restaurantElement =
-                  state.restaurantResult.restaurants[index];
-              return RestaurantCard(restaurant: restaurantElement);
-            },
+          return SafeArea(
+            child: ListView.builder(
+              shrinkWrap: true,
+              itemCount: state.restaurantResult.restaurants.length,
+              itemBuilder: (context, index) {
+                Restaurant restaurantElement =
+                    state.restaurantResult.restaurants[index];
+                return RestaurantCard(restaurant: restaurantElement);
+              },
+            ),
           );
         } else if (state.state == ResultState.noData) {
           return Center(
