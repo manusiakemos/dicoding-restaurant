@@ -18,11 +18,16 @@ class BadgeWidget extends StatelessWidget {
         color: accentColor,
       ),
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.symmetric(
+          vertical: 8,
+          horizontal: 16,
+        ),
         child: Text(
           nama,
-          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              color: Colors.white, fontWeight: FontWeight.bold),
+          style: Theme.of(context)
+              .textTheme
+              .bodyMedium
+              ?.copyWith(color: mutedColor, fontWeight: FontWeight.bold),
         ),
       ),
     );

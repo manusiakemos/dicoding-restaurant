@@ -1,10 +1,9 @@
 import 'package:dicoding_restaurant_app/common/styles.dart';
+import 'package:dicoding_restaurant_app/models/restaurant.dart';
 import 'package:dicoding_restaurant_app/pages/restaurant_detail_page.dart';
 import 'package:dicoding_restaurant_app/widgets/atoms/heading.dart';
 import 'package:dicoding_restaurant_app/widgets/atoms/sub_heading.dart';
 import 'package:flutter/material.dart';
-
-import '../../models/restaurant_list.dart';
 
 class RestaurantCard extends StatelessWidget {
   final Restaurant restaurant;
@@ -63,7 +62,7 @@ class RestaurantCard extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            const Icon(Icons.star, color: Colors.white,),
+                            const Icon(Icons.star, color: Colors.amber,),
                             const SizedBox(width: 5),
                             SubHeading(title: restaurant.rating.toString()),
                           ],

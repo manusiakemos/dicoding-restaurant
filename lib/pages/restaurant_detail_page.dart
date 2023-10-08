@@ -22,7 +22,8 @@ class RestaurantDetailPage extends StatelessWidget {
       headerSliverBuilder: (BuildContext context, bool isScrolled) {
         return [
           SliverAppBar(
-            pinned: false,
+            pinned: true,
+            floating: false,
             leading: Padding(
               padding: const EdgeInsets.all(16),
               child: GestureDetector(
@@ -35,6 +36,8 @@ class RestaurantDetailPage extends StatelessWidget {
                   )),
             ),
             expandedHeight: 300,
+            backgroundColor: Colors.black,
+
             flexibleSpace: FlexibleSpaceBar(
               background: Image.network(
                 'https://restaurant-api.dicoding.dev/images/medium/${restaurant.pictureId}',
@@ -62,7 +65,7 @@ class RestaurantDetailPage extends StatelessWidget {
               Flex(
                 direction: Axis.horizontal,
                 children: [
-                  const Icon(Icons.pin_drop_outlined, color: Colors.white),
+                  const Icon(Icons.pin_drop, color: Colors.amber),
                   const SizedBox(width: 4.0),
                   Text(restaurant.city),
                 ],
@@ -72,7 +75,7 @@ class RestaurantDetailPage extends StatelessWidget {
                 direction: Axis.horizontal,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const Icon(Icons.star_rate_outlined, color: Colors.white),
+                  const Icon(Icons.star, color: Colors.amber),
                   const SizedBox(width: 4.0),
                   Text(restaurant.rating.toString()),
                 ],

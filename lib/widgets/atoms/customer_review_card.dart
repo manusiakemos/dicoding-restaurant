@@ -18,24 +18,30 @@ class CustomerReviewCard extends StatelessWidget {
         color: accentColor,
         borderOnForeground: true,
         elevation: 8,
+        surfaceTintColor: accentColor,
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(16.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                customerReview.name,
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    customerReview.name,
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
-              ),
-              const SizedBox(height: 8.0),
-              Text(
-                customerReview.date,
-                style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                  ),
+                  const SizedBox(height: 8.0),
+                  Text(
+                    customerReview.date,
+                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
                       color: Colors.white70,
                     ),
+                  ),
+                ],
               ),
               const SizedBox(height: 16.0),
               Text(

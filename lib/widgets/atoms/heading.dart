@@ -21,10 +21,11 @@ class Heading extends StatelessWidget {
 
     return Text(
       title,
-      style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-        color: mutedColor,
+      style: myTextTheme.headlineLarge?.copyWith(
+        color: Colors.white,
         fontWeight: FontWeight.bold,
         fontSize: fontSize,
+        letterSpacing: size == 'lg' ? -2 : 0
       )
     );
   }
