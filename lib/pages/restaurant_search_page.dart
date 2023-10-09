@@ -10,17 +10,12 @@ import 'package:dicoding_restaurant_app/widgets/molecules/search_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class RestaurantSearchPage extends StatefulWidget {
+class RestaurantSearchPage extends StatelessWidget {
   static const String routeName = 'search_restaurant';
 
-  const RestaurantSearchPage({super.key});
+  RestaurantSearchPage({super.key});
 
-  @override
-  State<RestaurantSearchPage> createState() => _RestaurantSearchPageState();
-}
-
-class _RestaurantSearchPageState extends State<RestaurantSearchPage> {
-  final _debouncer = Debouncer(milliseconds: 500);
+  final Debouncer _debouncer = Debouncer(milliseconds: 500);
 
   Widget _searchInput() {
     return Consumer<SearchRestaurantProvider>(
@@ -32,14 +27,13 @@ class _RestaurantSearchPageState extends State<RestaurantSearchPage> {
             autoFocus: true,
             onChanged: (text) {
               _debouncer.run(() {
-                setState(() {
-                  state.searchRestaurant(text);
-                });
+                state.searchRestaurant(text);
               });
             },
           ),
         );
       },
+
     );
   }
 
