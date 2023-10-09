@@ -8,10 +8,10 @@ import 'package:provider/provider.dart';
 
 Logger logger = Logger();
 
-class RestaurantListPage extends StatelessWidget {
+class RestaurantListWidget extends StatelessWidget {
   static const routeName = '/';
 
-  const RestaurantListPage({super.key});
+  const RestaurantListWidget({super.key});
 
   Widget _buildList() {
     return Consumer<RestaurantListProvider>(

@@ -37,7 +37,6 @@ class RestaurantDetailPage extends StatelessWidget {
             ),
             expandedHeight: 300,
             backgroundColor: Colors.black,
-
             flexibleSpace: FlexibleSpaceBar(
               background: Image.network(
                 'https://restaurant-api.dicoding.dev/images/medium/${restaurant.pictureId}',
@@ -113,18 +112,25 @@ class RestaurantDetailPage extends StatelessWidget {
     return Scaffold(
         backgroundColor: primaryColor,
         body: ChangeNotifierProvider<RestaurantDetailProvider>(
-          create: (BuildContext context) =>
-              RestaurantDetailProvider(apiService: ApiService(), id: id),
+          create: (BuildContext context) => RestaurantDetailProvider(
+            apiService: ApiService(),
+            id: id,
+          ),
           child: Consumer<RestaurantDetailProvider>(
-            builder: (BuildContext context, RestaurantDetailProvider value,
-                Widget? child) {
+            builder: (
+              BuildContext context,
+              RestaurantDetailProvider value,
+              Widget? child,
+            ) {
               if (value.state == ResultState.loading) {
                 return const Center(
                   child: CircularProgressIndicator(),
                 );
               } else if (value.state == ResultState.hasData) {
                 return _consumerWiget(
-                    context, value.restaurantResult.restaurant);
+                  context,
+                  value.restaurantResult.restaurant,
+                );
               } else if (value.state == ResultState.error) {
                 return Center(
                   child: Text(value.message),

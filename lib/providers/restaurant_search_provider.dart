@@ -3,11 +3,11 @@ import 'package:dicoding_restaurant_app/models/enum_state.dart';
 import 'package:dicoding_restaurant_app/models/restaurant_search.dart';
 import 'package:flutter/foundation.dart';
 
-class SearchRestaurantProvider extends ChangeNotifier {
+class RestaurantSearchProvider extends ChangeNotifier {
   final ApiService apiService;
 
-  SearchRestaurantProvider({required this.apiService}) {
-    searchRestaurant(query);
+  RestaurantSearchProvider({required this.apiService}) {
+    restaurantSearchProvider(query);
   }
 
   late RestaurantSearch _restaurantResult;
@@ -20,7 +20,7 @@ class SearchRestaurantProvider extends ChangeNotifier {
   String get message => _message;
   String get query => _query;
 
-  Future<dynamic> searchRestaurant(String search) async {
+  Future<dynamic> restaurantSearchProvider(String search) async {
     try {
       _state = ResultState.loading;
       _query = search;

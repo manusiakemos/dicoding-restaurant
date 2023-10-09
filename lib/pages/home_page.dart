@@ -1,6 +1,6 @@
 import 'package:dicoding_restaurant_app/common/styles.dart';
 import 'package:dicoding_restaurant_app/data/api_service.dart';
-import 'package:dicoding_restaurant_app/pages/restaurant_list_page.dart';
+import 'package:dicoding_restaurant_app/widgets/molecules/restaurant_list_widget.dart';
 import 'package:dicoding_restaurant_app/providers/restaurant_list_provider.dart';
 import 'package:dicoding_restaurant_app/widgets/molecules/navbar.dart';
 import 'package:flutter/material.dart';
@@ -16,16 +16,16 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final Widget _homeWidget = ChangeNotifierProvider<RestaurantListProvider>(
+  final Widget _notifierWidget = ChangeNotifierProvider<RestaurantListProvider>(
     create: (_) => RestaurantListProvider(apiService: ApiService()),
-    child: const RestaurantListPage(),
+    child: const RestaurantListWidget(),
   );
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: primaryColor,
-      body: _homeWidget,
+      body: _notifierWidget,
       appBar: AppBar(
         toolbarOpacity: 1,
         centerTitle: true,
