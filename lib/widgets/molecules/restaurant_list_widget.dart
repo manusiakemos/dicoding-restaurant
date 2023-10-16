@@ -1,3 +1,4 @@
+import 'package:dicoding_restaurant_app/common/styles.dart';
 import 'package:dicoding_restaurant_app/models/enum_state.dart';
 import 'package:dicoding_restaurant_app/models/restaurant.dart';
 import 'package:dicoding_restaurant_app/providers/restaurant_list_provider.dart';
@@ -26,7 +27,14 @@ class RestaurantListWidget extends StatelessWidget {
               itemBuilder: (context, index) {
                 Restaurant restaurantElement =
                     state.restaurantResult.restaurants[index];
-                return RestaurantCard(restaurant: restaurantElement);
+                return Dismissible(
+                  key: Key(restaurantElement.id),
+                  direction: DismissDirection.startToEnd,
+                  background: Container(
+                    color: secondaryColor,
+                  ),
+                  child: RestaurantCard(restaurant: restaurantElement),
+                );
               },
             ),
           );

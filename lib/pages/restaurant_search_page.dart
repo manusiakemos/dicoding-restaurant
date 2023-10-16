@@ -1,5 +1,4 @@
 import 'package:dicoding_restaurant_app/common/styles.dart';
-import 'package:dicoding_restaurant_app/data/api_service.dart';
 import 'package:dicoding_restaurant_app/models/enum_state.dart';
 import 'package:dicoding_restaurant_app/models/restaurant.dart';
 import 'package:dicoding_restaurant_app/providers/restaurant_search_provider.dart';
@@ -11,7 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class RestaurantSearchPage extends StatelessWidget {
-  static const String routeName = 'search_restaurant';
+  static const String routeName = 'restaurant_search_page';
 
   RestaurantSearchPage({super.key});
 
@@ -75,49 +74,44 @@ class RestaurantSearchPage extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body: ChangeNotifierProvider<RestaurantSearchProvider>(
-        create: (BuildContext context) {
-          return RestaurantSearchProvider(apiService: ApiService());
-        },
-        child: Column(
-          children: [
-            _searchInput(),
-            Consumer<RestaurantSearchProvider>(
-              builder: (
-                BuildContext context,
-                RestaurantSearchProvider value,
-                Widget? child,
-              ) {
-                if (value.state == ResultState.loading) {
-                  return const SearchLoading();
-                } else if (value.state == ResultState.hasData) {
-                  return _listRestaurantWidget(
-                    context,
-                    value.restaurantSearch.restaurants,
-                  );
-                } else if (value.state == ResultState.error) {
-                  return Expanded(
-                    child: Center(
-                      child: Text(value.message),
-                    ),
-                  );
-                } else if (value.state == ResultState.noData) {
-                  return Expanded(
-                    child: Center(
-                      child: Text(value.message),
-                    ),
-                  );
-                } else {
-                  return Expanded(
-                    child: Center(
-                      child: Text(value.message),
-                    ),
-                  );
-                }
-              },
-            ),
-          ],
-        ),
+      body: Column(
+        children: [
+          _searchInput(),
+          Consumer<RestaurantSearchProvider>(
+            builder: (
+              BuildContext context,
+              RestaurantSearchProvider value,
+              Widget? child,
+            ) {
+              if (value.state == ResultState.loading) {
+                return const SearchLoading();
+              } else if (value.state == ResultState.hasData) {
+                return _listRestaurantWidget(
+                  context,
+                  value.restaurantSearch.restaurants,
+                );
+              } else if (value.state == ResultState.error) {
+                return Expanded(
+                  child: Center(
+                    child: Text(value.message),
+                  ),
+                );
+              } else if (value.state == ResultState.noData) {
+                return Expanded(
+                  child: Center(
+                    child: Text(value.message),
+                  ),
+                );
+              } else {
+                return Expanded(
+                  child: Center(
+                    child: Text(value.message),
+                  ),
+                );
+              }
+            },
+          ),
+        ],
       ),
     );
   }

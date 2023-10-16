@@ -11,7 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class RestaurantDetailPage extends StatelessWidget {
-  static const String routeName = '/restaurant-detail-page';
+  static const String routeName = 'restaurant_detail_page';
 
   final String id;
 
@@ -32,7 +32,7 @@ class RestaurantDetailPage extends StatelessWidget {
                   },
                   child: const Icon(
                     Icons.arrow_back_ios_new_outlined,
-                    color: Colors.white,
+                    color: accentColor,
                   )),
             ),
             expandedHeight: 300,
