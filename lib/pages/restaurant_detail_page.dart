@@ -11,6 +11,7 @@ import 'package:dicoding_restaurant_app/widgets/molecules/restaurant_category_wi
 import 'package:dicoding_restaurant_app/widgets/molecules/makanan_minuman_grid_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:http/http.dart' as http;
 
 import '../data/model/restaurant.dart';
 
@@ -27,7 +28,7 @@ class RestaurantDetailPage extends StatelessWidget {
         backgroundColor: primaryColor,
         body: ChangeNotifierProvider<RestaurantDetailProvider>(
           create: (BuildContext context) => RestaurantDetailProvider(
-            apiService: ApiService(),
+            apiService: ApiService(http.Client()),
             id: restaurantData.id,
           ),
           child: Consumer<RestaurantDetailProvider>(

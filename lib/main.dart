@@ -19,6 +19,7 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'common/styles.dart';
 import 'data/model/restaurant.dart';
+import 'package:http/http.dart' as http;
 
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 
@@ -54,12 +55,12 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (BuildContext context) => RestaurantListProvider(
-            apiService: ApiService(),
+            apiService: ApiService(http.Client()),
           ),
         ),
         ChangeNotifierProvider(
           create: (BuildContext context) => RestaurantSearchProvider(
-            apiService: ApiService(),
+            apiService: ApiService(http.Client()),
           ),
         ),
         ChangeNotifierProvider(
