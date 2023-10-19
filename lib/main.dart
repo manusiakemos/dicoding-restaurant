@@ -76,9 +76,12 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          colorScheme: Theme.of(context)
-              .colorScheme
-              .copyWith(primary: Colors.amber, secondary: Colors.amberAccent, background: Colors.black),
+          iconTheme: Theme.of(context).iconTheme.copyWith(color: Colors.white),
+          colorScheme: Theme.of(context).colorScheme.copyWith(
+                primary: Colors.black,
+                secondary: Colors.amber,
+                background: Colors.black,
+              ),
           textTheme: myTextTheme,
           useMaterial3: true,
           visualDensity: VisualDensity.adaptivePlatformDensity,
@@ -89,7 +92,7 @@ class MyApp extends StatelessWidget {
             return const HomePage();
           },
           RestaurantSearchPage.routeName: (context) {
-            return RestaurantSearchPage();
+            return const RestaurantSearchPage();
           },
           RestaurantDetailPage.routeName: (context) {
             return RestaurantDetailPage(

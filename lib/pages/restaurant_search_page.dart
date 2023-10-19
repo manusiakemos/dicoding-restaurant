@@ -1,9 +1,8 @@
 import 'package:dicoding_restaurant_app/common/styles.dart';
 import 'package:dicoding_restaurant_app/data/enum/enum_state.dart';
 import 'package:dicoding_restaurant_app/providers/restaurant_search_provider.dart';
-import 'package:dicoding_restaurant_app/utils/debouncer.dart';
 import 'package:dicoding_restaurant_app/widgets/atoms/restaurant_card.dart';
-import 'package:dicoding_restaurant_app/widgets/atoms/text_input.dart';
+import 'package:dicoding_restaurant_app/widgets/molecules/search_input.dart';
 import 'package:dicoding_restaurant_app/widgets/molecules/search_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -12,29 +11,7 @@ import '../data/model/restaurant.dart';
 class RestaurantSearchPage extends StatelessWidget {
   static const String routeName = 'restaurant_search_page';
 
-  RestaurantSearchPage({super.key});
-
-  final Debouncer _debouncer = Debouncer(milliseconds: 500);
-
-  Widget _searchInput() {
-    return Consumer<RestaurantSearchProvider>(
-      builder: (context, state, _) {
-        return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12.0),
-          child: TextInput(
-            readOnly: false,
-            autoFocus: true,
-            onChanged: (text) {
-              _debouncer.run(() {
-                state.restaurantSearchProvider(text);
-              });
-            },
-          ),
-        );
-      },
-
-    );
-  }
+  const RestaurantSearchPage({super.key});
 
   Widget _listRestaurantWidget(
     BuildContext context,
@@ -76,7 +53,7 @@ class RestaurantSearchPage extends StatelessWidget {
       ),
       body: Column(
         children: [
-          _searchInput(),
+          SearchInput(),
           Consumer<RestaurantSearchProvider>(
             builder: (
               BuildContext context,
