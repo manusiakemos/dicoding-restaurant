@@ -1,6 +1,7 @@
-import 'package:dicoding_restaurant_app/data/database_helper.dart';
-import 'package:dicoding_restaurant_app/models/restaurant.dart';
+import 'package:dicoding_restaurant_app/data/database/database_helper.dart';
 import 'package:flutter/foundation.dart';
+
+import '../data/model/restaurant.dart';
 
 class DbRestaurantProvider extends ChangeNotifier{
   List<Restaurant> _restaurants = [];

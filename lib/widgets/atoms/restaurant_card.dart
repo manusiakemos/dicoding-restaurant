@@ -1,10 +1,11 @@
 import 'package:dicoding_restaurant_app/common/styles.dart';
-import 'package:dicoding_restaurant_app/models/restaurant.dart';
 import 'package:dicoding_restaurant_app/pages/restaurant_detail_page.dart';
 import 'package:dicoding_restaurant_app/widgets/atoms/favorite_button.dart';
 import 'package:dicoding_restaurant_app/widgets/atoms/heading.dart';
 import 'package:dicoding_restaurant_app/widgets/atoms/sub_heading.dart';
 import 'package:flutter/material.dart';
+
+import '../../data/model/restaurant.dart';
 
 class RestaurantCard extends StatelessWidget {
   final Restaurant restaurant;
@@ -19,7 +20,7 @@ class RestaurantCard extends StatelessWidget {
         Navigator.pushNamed(
           context,
           RestaurantDetailPage.routeName,
-          arguments: restaurant.id,
+          arguments: restaurant,
         );
       },
       child: Card(

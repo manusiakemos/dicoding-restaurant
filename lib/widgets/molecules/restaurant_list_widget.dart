@@ -1,11 +1,11 @@
-import 'package:dicoding_restaurant_app/common/styles.dart';
-import 'package:dicoding_restaurant_app/models/enum_state.dart';
-import 'package:dicoding_restaurant_app/models/restaurant.dart';
+import 'package:dicoding_restaurant_app/data/enum/enum_state.dart';
 import 'package:dicoding_restaurant_app/providers/restaurant_list_provider.dart';
 import 'package:dicoding_restaurant_app/widgets/atoms/restaurant_card.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
+
+import '../../data/model/restaurant.dart';
 
 Logger logger = Logger();
 
@@ -20,23 +20,14 @@ class RestaurantListWidget extends StatelessWidget {
         if (state.state == ResultState.loading) {
           return const Center(child: CircularProgressIndicator());
         } else if (state.state == ResultState.hasData) {
-          return SafeArea(
-            child: ListView.builder(
-              shrinkWrap: true,
-              itemCount: state.restaurantResult.restaurants.length,
-              itemBuilder: (context, index) {
-                Restaurant restaurantElement =
-                    state.restaurantResult.restaurants[index];
-                return Dismissible(
-                  key: Key(restaurantElement.id),
-                  direction: DismissDirection.startToEnd,
-                  background: Container(
-                    color: secondaryColor,
-                  ),
-                  child: RestaurantCard(restaurant: restaurantElement),
-                );
-              },
-            ),
+          return ListView.builder(
+            shrinkWrap: true,
+            itemCount: state.restaurantResult.restaurants.length,
+            itemBuilder: (context, index) {
+              Restaurant restaurantElement =
+                  state.restaurantResult.restaurants[index];
+              return RestaurantCard(restaurant: restaurantElement);
+            },
           );
         } else if (state.state == ResultState.noData) {
           return Center(

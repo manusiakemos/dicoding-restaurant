@@ -1,7 +1,8 @@
-import 'package:dicoding_restaurant_app/models/restaurant.dart';
 import 'package:dicoding_restaurant_app/providers/db_restaurant_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import '../../data/model/restaurant.dart';
 
 class FavoriteButton extends StatelessWidget {
   final Restaurant restaurant;

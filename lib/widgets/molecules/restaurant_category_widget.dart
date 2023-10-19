@@ -1,4 +1,4 @@
-import 'package:dicoding_restaurant_app/models/restaurant_detail.dart';
+import 'package:dicoding_restaurant_app/data/model/restaurant_detail.dart';
 import 'package:dicoding_restaurant_app/widgets/atoms/badge_widget.dart';
 import 'package:flutter/material.dart';
 

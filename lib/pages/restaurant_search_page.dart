@@ -1,6 +1,5 @@
 import 'package:dicoding_restaurant_app/common/styles.dart';
-import 'package:dicoding_restaurant_app/models/enum_state.dart';
-import 'package:dicoding_restaurant_app/models/restaurant.dart';
+import 'package:dicoding_restaurant_app/data/enum/enum_state.dart';
 import 'package:dicoding_restaurant_app/providers/restaurant_search_provider.dart';
 import 'package:dicoding_restaurant_app/utils/debouncer.dart';
 import 'package:dicoding_restaurant_app/widgets/atoms/restaurant_card.dart';
@@ -8,6 +7,7 @@ import 'package:dicoding_restaurant_app/widgets/atoms/text_input.dart';
 import 'package:dicoding_restaurant_app/widgets/molecules/search_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../data/model/restaurant.dart';
 
 class RestaurantSearchPage extends StatelessWidget {
   static const String routeName = 'restaurant_search_page';

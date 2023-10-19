@@ -1,7 +1,7 @@
 import 'dart:convert';
-import 'package:dicoding_restaurant_app/models/restaurant_detail.dart';
-import 'package:dicoding_restaurant_app/models/restaurant_list.dart';
-import 'package:dicoding_restaurant_app/models/restaurant_search.dart';
+import 'package:dicoding_restaurant_app/data/model/restaurant_detail.dart';
+import 'package:dicoding_restaurant_app/data/model/restaurant_list.dart';
+import 'package:dicoding_restaurant_app/data/model/restaurant_search.dart';
 import 'package:http/http.dart' as http;
 
 class ApiService {

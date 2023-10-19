@@ -1,7 +1,6 @@
 import 'dart:convert';
 
-import 'package:dicoding_restaurant_app/models/restaurant.dart';
-
+import 'restaurant.dart';
 RestaurantList restaurantResultFromJson(String str) => RestaurantList.fromJson(json.decode(str));
 
 String restaurantResultToJson(RestaurantList data) => json.encode(data.toJson());

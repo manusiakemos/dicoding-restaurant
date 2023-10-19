@@ -1,6 +1,6 @@
-import 'package:dicoding_restaurant_app/data/api_service.dart';
-import 'package:dicoding_restaurant_app/models/enum_state.dart';
-import 'package:dicoding_restaurant_app/models/restaurant_detail.dart';
+import 'package:dicoding_restaurant_app/data/api/api_service.dart';
+import 'package:dicoding_restaurant_app/data/enum/enum_state.dart';
+import 'package:dicoding_restaurant_app/data/model/restaurant_detail.dart';
 import 'package:flutter/foundation.dart';
 
 class RestaurantDetailProvider extends ChangeNotifier {

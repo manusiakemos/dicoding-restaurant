@@ -1,7 +1,8 @@
 import 'package:logger/logger.dart';
-import 'package:dicoding_restaurant_app/models/restaurant.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
+
+import '../model/restaurant.dart';
 
 class DatabaseHelper {
   static DatabaseHelper? _databaseHelper;

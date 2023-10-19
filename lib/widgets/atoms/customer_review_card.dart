@@ -1,5 +1,5 @@
 import 'package:dicoding_restaurant_app/common/styles.dart';
-import 'package:dicoding_restaurant_app/models/restaurant_detail.dart';
+import 'package:dicoding_restaurant_app/data/model/restaurant_detail.dart';
 import 'package:flutter/material.dart';
 
 class CustomerReviewCard extends StatelessWidget {

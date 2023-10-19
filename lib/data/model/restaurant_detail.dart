@@ -8,7 +8,7 @@ String restaurantDetailToJson(RestaurantDetail data) => json.encode(data.toJson(
 class RestaurantDetail {
   bool error;
   String message;
-  Restaurant restaurant;
+  RestaurantItem restaurant;
 
   RestaurantDetail({
     required this.error,
@@ -19,7 +19,7 @@ class RestaurantDetail {
   factory RestaurantDetail.fromJson(Map<String, dynamic> json) => RestaurantDetail(
     error: json["error"],
     message: json["message"],
-    restaurant: Restaurant.fromJson(json["restaurant"]),
+    restaurant: RestaurantItem.fromJson(json["restaurant"]),
   );
 
   Map<String, dynamic> toJson() => {
@@ -29,7 +29,7 @@ class RestaurantDetail {
   };
 }
 
-class Restaurant {
+class RestaurantItem {
   String id;
   String name;
   String description;
@@ -41,7 +41,7 @@ class Restaurant {
   double rating;
   List<CustomerReview> customerReviews;
 
-  Restaurant({
+  RestaurantItem({
     required this.id,
     required this.name,
     required this.description,
@@ -54,7 +54,7 @@ class Restaurant {
     required this.customerReviews,
   });
 
-  factory Restaurant.fromJson(Map<String, dynamic> json) => Restaurant(
+  factory RestaurantItem.fromJson(Map<String, dynamic> json) => RestaurantItem(
     id: json["id"],
     name: json["name"],
     description: json["description"],

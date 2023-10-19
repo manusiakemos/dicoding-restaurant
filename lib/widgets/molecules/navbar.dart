@@ -1,5 +1,4 @@
 import 'package:dicoding_restaurant_app/common/styles.dart';
-import 'package:dicoding_restaurant_app/pages/restaurant_favorite_page.dart';
 import 'package:dicoding_restaurant_app/pages/restaurant_search_page.dart';
 import 'package:flutter/material.dart';
 
@@ -21,35 +20,18 @@ class NavbarWidget extends StatelessWidget {
                   letterSpacing: -2,
                   fontWeight: FontWeight.bold),
             ),
-            Row(
-              children: [
-                IconButton(
-                  onPressed: () {
-                    Navigator.pushNamed(
-                      context,
-                      RestaurantFavoritePage.routeName,
-                    );
-                  },
-                  icon: const Icon(
-                    Icons.favorite_outline,
-                    size: 32,
-                    color: Colors.white,
-                  ),
-                ),
-                IconButton(
-                  onPressed: () {
-                    Navigator.pushNamed(
-                      context,
-                      RestaurantSearchPage.routeName,
-                    );
-                  },
-                  icon: const Icon(
-                    Icons.search,
-                    size: 32,
-                    color: Colors.white,
-                  ),
-                ),
-              ],
+            IconButton(
+              onPressed: () {
+                Navigator.pushNamed(
+                  context,
+                  RestaurantSearchPage.routeName,
+                );
+              },
+              icon: const Icon(
+                Icons.search,
+                size: 32,
+                color: Colors.white,
+              ),
             )
           ],
         ),

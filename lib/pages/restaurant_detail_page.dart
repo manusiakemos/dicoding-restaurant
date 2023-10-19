@@ -1,8 +1,10 @@
 import 'package:dicoding_restaurant_app/common/styles.dart';
-import 'package:dicoding_restaurant_app/data/api_service.dart';
-import 'package:dicoding_restaurant_app/models/enum_state.dart';
-import 'package:dicoding_restaurant_app/models/restaurant_detail.dart';
+import 'package:dicoding_restaurant_app/data/api/api_service.dart';
+import 'package:dicoding_restaurant_app/data/enum/enum_state.dart';
+import 'package:dicoding_restaurant_app/data/model/restaurant_detail.dart';
 import 'package:dicoding_restaurant_app/providers/restaurant_detail_provider.dart';
+import 'package:dicoding_restaurant_app/widgets/atoms/custom_back_button.dart';
+import 'package:dicoding_restaurant_app/widgets/atoms/favorite_button.dart';
 import 'package:dicoding_restaurant_app/widgets/atoms/heading.dart';
 import 'package:dicoding_restaurant_app/widgets/molecules/customer_review_widget.dart';
 import 'package:dicoding_restaurant_app/widgets/molecules/restaurant_category_widget.dart';
@@ -10,31 +12,66 @@ import 'package:dicoding_restaurant_app/widgets/molecules/makanan_minuman_grid_w
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../data/model/restaurant.dart';
+
 class RestaurantDetailPage extends StatelessWidget {
   static const String routeName = 'restaurant_detail_page';
 
-  final String id;
+  final Restaurant restaurantData;
 
-  const RestaurantDetailPage({super.key, required this.id});
+  const RestaurantDetailPage({super.key, required this.restaurantData});
 
-  Widget _consumerWiget(BuildContext context, Restaurant restaurant) {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        backgroundColor: primaryColor,
+        body: ChangeNotifierProvider<RestaurantDetailProvider>(
+          create: (BuildContext context) => RestaurantDetailProvider(
+            apiService: ApiService(),
+            id: restaurantData.id,
+          ),
+          child: Consumer<RestaurantDetailProvider>(
+            builder: (
+              BuildContext context,
+              RestaurantDetailProvider value,
+              Widget? child,
+            ) {
+              if (value.state == ResultState.loading) {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              } else if (value.state == ResultState.hasData) {
+                return _consumerWiget(
+                  context,
+                  value.restaurantResult.restaurant,
+                );
+              } else if (value.state == ResultState.error) {
+                return Center(
+                  child: Text(value.message),
+                );
+              } else if (value.state == ResultState.noData) {
+                return Center(
+                  child: Text(value.message),
+                );
+              } else {
+                return const Placeholder();
+              }
+            },
+          ),
+        ));
+  }
+
+  Widget _consumerWiget(BuildContext context, RestaurantItem restaurant) {
     return NestedScrollView(
       headerSliverBuilder: (BuildContext context, bool isScrolled) {
         return [
           SliverAppBar(
             pinned: true,
             floating: false,
-            leading: Padding(
-              padding: const EdgeInsets.all(16),
-              child: GestureDetector(
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
-                  child: const Icon(
-                    Icons.arrow_back_ios_new_outlined,
-                    color: accentColor,
-                  )),
-            ),
+            leading: const CustomBackButton(),
+            actions: [
+              FavoriteButton(restaurant: restaurantData),
+            ],
             expandedHeight: 300,
             backgroundColor: Colors.black,
             flexibleSpace: FlexibleSpaceBar(
@@ -48,7 +85,7 @@ class RestaurantDetailPage extends StatelessWidget {
       },
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.all(8),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -105,45 +142,5 @@ class RestaurantDetailPage extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: primaryColor,
-        body: ChangeNotifierProvider<RestaurantDetailProvider>(
-          create: (BuildContext context) => RestaurantDetailProvider(
-            apiService: ApiService(),
-            id: id,
-          ),
-          child: Consumer<RestaurantDetailProvider>(
-            builder: (
-              BuildContext context,
-              RestaurantDetailProvider value,
-              Widget? child,
-            ) {
-              if (value.state == ResultState.loading) {
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
-              } else if (value.state == ResultState.hasData) {
-                return _consumerWiget(
-                  context,
-                  value.restaurantResult.restaurant,
-                );
-              } else if (value.state == ResultState.error) {
-                return Center(
-                  child: Text(value.message),
-                );
-              } else if (value.state == ResultState.noData) {
-                return Center(
-                  child: Text(value.message),
-                );
-              } else {
-                return const Placeholder();
-              }
-            },
-          ),
-        ));
   }
 }

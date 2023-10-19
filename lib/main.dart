@@ -1,16 +1,43 @@
-import 'package:dicoding_restaurant_app/data/api_service.dart';
+import 'dart:io';
+
+import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
+import 'package:dicoding_restaurant_app/data/api/api_service.dart';
+import 'package:dicoding_restaurant_app/data/preferences/preference_helper.dart';
 import 'package:dicoding_restaurant_app/pages/home_page.dart';
 import 'package:dicoding_restaurant_app/pages/restaurant_detail_page.dart';
-import 'package:dicoding_restaurant_app/pages/restaurant_favorite_page.dart';
 import 'package:dicoding_restaurant_app/pages/restaurant_search_page.dart';
+import 'package:dicoding_restaurant_app/providers/preference_provider.dart';
 import 'package:dicoding_restaurant_app/providers/db_restaurant_provider.dart';
 import 'package:dicoding_restaurant_app/providers/restaurant_list_provider.dart';
 import 'package:dicoding_restaurant_app/providers/restaurant_search_provider.dart';
+import 'package:dicoding_restaurant_app/providers/scheduling_provider.dart';
+import 'package:dicoding_restaurant_app/utils/background_service.dart';
+import 'package:dicoding_restaurant_app/utils/notification_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'common/styles.dart';
+import 'data/model/restaurant.dart';
 
-void main() {
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final BackgroundService service = BackgroundService();
+
+  service.initializeIsolate();
+  final NotificationHelper notificationHelper = NotificationHelper();
+
+  if (Platform.isAndroid) {
+    await AndroidAlarmManager.initialize();
+    notificationHelper.requestAndroidPermission(flutterLocalNotificationsPlugin);
+  } else if (Platform.isIOS) {
+    notificationHelper.requestIOSPermissions(flutterLocalNotificationsPlugin);
+  }
+
+  await notificationHelper.initNotifications(flutterLocalNotificationsPlugin);
+
   runApp(const MyApp());
 }
 
@@ -23,42 +50,50 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (context) => DbRestaurantProvider(),
+          create: (BuildContext context) => DbRestaurantProvider(),
         ),
         ChangeNotifierProvider(
-          create: (context) => RestaurantListProvider(
+          create: (BuildContext context) => RestaurantListProvider(
             apiService: ApiService(),
           ),
         ),
         ChangeNotifierProvider(
-          create: (context) => RestaurantSearchProvider(
+          create: (BuildContext context) => RestaurantSearchProvider(
             apiService: ApiService(),
           ),
+        ),
+        ChangeNotifierProvider(
+          create: (BuildContext context) => PreferenceProvider(
+            preferenceHelper: PreferenceHelper(
+              sharedPreferences: SharedPreferences.getInstance(),
+            ),
+          ),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => SchedulingProvider(),
         ),
       ],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          colorScheme: Theme.of(context).colorScheme.copyWith(
-                primary: Colors.amber,
-                secondary: Colors.amberAccent,
-                background: const Color(0xFFf1f5f9),
-              ),
+          colorScheme: Theme.of(context)
+              .colorScheme
+              .copyWith(primary: Colors.amber, secondary: Colors.amberAccent, background: Colors.black),
           textTheme: myTextTheme,
           useMaterial3: true,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         initialRoute: HomePage.routeName,
         routes: {
-          HomePage.routeName: (context) => const HomePage(),
-          RestaurantFavoritePage.routeName: (context) {
-            return RestaurantFavoritePage();
+          HomePage.routeName: (context) {
+            return const HomePage();
           },
           RestaurantSearchPage.routeName: (context) {
             return RestaurantSearchPage();
           },
           RestaurantDetailPage.routeName: (context) {
             return RestaurantDetailPage(
-              id: ModalRoute.of(context)?.settings.arguments as String,
+              restaurantData: ModalRoute.of(context)!.settings.arguments as Restaurant,
             );
           },
         },
