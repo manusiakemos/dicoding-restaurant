@@ -3,7 +3,7 @@ import 'dart:math';
 
 import 'package:dicoding_restaurant_app/data/model/restaurant.dart';
 import 'package:dicoding_restaurant_app/data/model/restaurant_list.dart';
-import 'package:dicoding_restaurant_app/widgets/molecules/restaurant_list_widget.dart';
+import 'package:dicoding_restaurant_app/pages/restaurant_list_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';

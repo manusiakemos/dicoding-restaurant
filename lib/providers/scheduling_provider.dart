@@ -14,10 +14,11 @@ class SchedulingProvider extends ChangeNotifier {
     _isScheduled = value;
 
     if (_isScheduled) {
+      logger.d('Scheduling enabled');
       notifyListeners();
 
       return await AndroidAlarmManager.periodic(
-        const Duration(days: 1),
+        const Duration(hours: 24),
         1,
         BackgroundService.callback,
         startAt: DateTimeHelper.format(),
@@ -25,6 +26,7 @@ class SchedulingProvider extends ChangeNotifier {
         wakeup: true,
       );
     } else {
+      logger.d('Scheduling disabled');
       notifyListeners();
       return await AndroidAlarmManager.cancel(1);
     }

@@ -25,7 +25,6 @@ class SettingPage extends StatelessWidget {
               schedulingProvider.scheduledReminder(value);
               preferenceProvider.toggleDailyReminder(value);
             }
-
             return SingleChildScrollView(
               child: Column(
                 children: [
@@ -40,10 +39,14 @@ class SettingPage extends StatelessWidget {
                       setReminder(value);
                       if (value) {
                         await notificationHelper.showNotificationWithNoBody(
-                            flutterLocalNotificationsPlugin, 'Daily Reminder is on');
+                          flutterLocalNotificationsPlugin,
+                          'Daily Reminder is on',
+                        );
                       } else {
                         await notificationHelper.showNotificationWithNoBody(
-                            flutterLocalNotificationsPlugin, 'Daily Reminder is off');
+                          flutterLocalNotificationsPlugin,
+                          'Daily Reminder is off',
+                        );
                       }
                     },
                   )

@@ -32,57 +32,59 @@ class RestaurantCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(15),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(8),
-                    child: Stack(
-                      children: [
-                        Image.network(
-                          'https://restaurant-api.dicoding.dev/images/medium/${restaurant.pictureId}',
-                          height: 100,
-                          width: 150,
-                          fit: BoxFit.cover,
-                        ),
-                        FavoriteButton(
-                          restaurant: restaurant,
-                        ),
-                      ],
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(15),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(8),
+                      child: Stack(
+                        children: [
+                          Image.network(
+                            'https://restaurant-api.dicoding.dev/images/medium/${restaurant.pictureId}',
+                            height: 100,
+                            width: 150,
+                            fit: BoxFit.cover,
+                          ),
+                          FavoriteButton(
+                            restaurant: restaurant,
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                  Container(width: 20),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Container(height: 5),
-                        Heading(
-                          title: restaurant.name,
-                          size: "md",
-                        ),
-                        Container(height: 5),
-                        SubHeading(title: restaurant.city),
-                        Container(height: 10),
-                        Flex(
-                          direction: Axis.horizontal,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            const Icon(
-                              Icons.star,
-                              color: Colors.amber,
-                            ),
-                            const SizedBox(width: 5),
-                            SubHeading(title: restaurant.rating.toString()),
-                          ],
-                        )
-                      ],
+                    Container(width: 20),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Container(height: 5),
+                          Heading(
+                            title: restaurant.name,
+                            size: "md",
+                          ),
+                          Container(height: 5),
+                          SubHeading(title: restaurant.city),
+                          Container(height: 10),
+                          Flex(
+                            direction: Axis.horizontal,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              const Icon(
+                                Icons.star,
+                                color: Colors.amber,
+                              ),
+                              const SizedBox(width: 5),
+                              SubHeading(title: restaurant.rating.toString()),
+                            ],
+                          )
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ],

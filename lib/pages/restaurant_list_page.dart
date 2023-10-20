@@ -5,47 +5,44 @@ import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 
-import '../../data/model/restaurant.dart';
+import '../data/model/restaurant.dart';
 
 Logger logger = Logger();
 
-class RestaurantListWidget extends StatelessWidget {
+class RestaurantListPage extends StatelessWidget {
   static const routeName = '/';
 
-  const RestaurantListWidget({super.key});
+  const RestaurantListPage({super.key});
 
   Widget _buildList() {
     return Consumer<RestaurantListProvider>(
-      builder: (context, state, _) {
-        if (state.state == ResultState.loading) {
+      builder: (
+        BuildContext context,
+        RestaurantListProvider restauranListProvider,
+        _,
+      ) {
+        if (restauranListProvider.state == ResultState.loading) {
           return const Center(child: CircularProgressIndicator());
-        } else if (state.state == ResultState.hasData) {
+        } else if (restauranListProvider.state == ResultState.hasData) {
           return ListView.builder(
             shrinkWrap: true,
-            itemCount: state.restaurantResult.restaurants.length,
+            itemCount: restauranListProvider.restaurantResult.restaurants.length,
             itemBuilder: (context, index) {
-              Restaurant restaurantElement =
-                  state.restaurantResult.restaurants[index];
+              Restaurant restaurantElement = restauranListProvider.restaurantResult.restaurants[index];
               return RestaurantCard(restaurant: restaurantElement);
             },
           );
-        } else if (state.state == ResultState.noData) {
+        } else if (restauranListProvider.state == ResultState.noData) {
           return Center(
-            child: Material(
-              child: Text(state.message),
-            ),
+            child: Material(child: Text(restauranListProvider.message)),
           );
-        } else if (state.state == ResultState.error) {
+        } else if (restauranListProvider.state == ResultState.error) {
           return Center(
-            child: Material(
-              child: Text(state.message),
-            ),
+            child: Material(child: Text(restauranListProvider.message)),
           );
         } else {
           return const Center(
-            child: Material(
-              child: Placeholder(),
-            ),
+            child: Material(child: Text('something wrong happened...')),
           );
         }
       },

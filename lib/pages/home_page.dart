@@ -4,7 +4,7 @@ import 'package:dicoding_restaurant_app/pages/restaurant_favorite_page.dart';
 import 'package:dicoding_restaurant_app/pages/setting_page.dart';
 import 'package:dicoding_restaurant_app/utils/background_service.dart';
 import 'package:dicoding_restaurant_app/utils/notification_helper.dart';
-import 'package:dicoding_restaurant_app/widgets/molecules/restaurant_list_widget.dart';
+import 'package:dicoding_restaurant_app/pages/restaurant_list_page.dart';
 import 'package:dicoding_restaurant_app/widgets/molecules/navbar.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
@@ -24,7 +24,7 @@ class _HomePageState extends State<HomePage> {
   final NotificationHelper _notificationHelper = NotificationHelper();
 
   final List<Widget> _listWidget = [
-    const RestaurantListWidget(),
+    const RestaurantListPage(),
     const RestaurantFavoritePage(),
     const SettingPage(),
   ];
