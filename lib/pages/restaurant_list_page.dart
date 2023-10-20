@@ -2,12 +2,9 @@ import 'package:dicoding_restaurant_app/data/enum/enum_state.dart';
 import 'package:dicoding_restaurant_app/providers/restaurant_list_provider.dart';
 import 'package:dicoding_restaurant_app/widgets/atoms/restaurant_card.dart';
 import 'package:flutter/material.dart';
-import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 
 import '../data/model/restaurant.dart';
-
-Logger logger = Logger();
 
 class RestaurantListPage extends StatelessWidget {
   static const routeName = '/';

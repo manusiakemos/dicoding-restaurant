@@ -1,4 +1,4 @@
-import 'package:dicoding_restaurant_app/providers/db_restaurant_provider.dart';
+import 'package:dicoding_restaurant_app/providers/restaurant_favorte_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -20,8 +20,8 @@ class FavoriteButton extends StatelessWidget {
       content: Text('Removed from favorites'),
     );
 
-    return Consumer<DbRestaurantProvider>(
-      builder: (BuildContext context, DbRestaurantProvider dbRestaurantProvider,
+    return Consumer<RestaurantFavoriteProvider>(
+      builder: (BuildContext context, RestaurantFavoriteProvider dbRestaurantProvider,
           Widget? child) {
         return FutureBuilder(
           future: dbRestaurantProvider.isFavorite(restaurant.id),

@@ -14,7 +14,7 @@ class SearchInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<RestaurantSearchProvider>(
-      builder: (context, state, _) {
+      builder: (BuildContext context, RestaurantSearchProvider state, Widget? _) {
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 12.0),
           child: TextField(
@@ -39,7 +39,7 @@ class SearchInput extends StatelessWidget {
               enabledBorder: OutlineInputBorder(
                 gapPadding: 16,
                 borderRadius: BorderRadius.circular(100),
-                borderSide: const BorderSide(color: Colors.grey, width: 1.0),
+                borderSide: const BorderSide(color: accentColor, width: 1.0),
               ),
             ),
             readOnly: false,

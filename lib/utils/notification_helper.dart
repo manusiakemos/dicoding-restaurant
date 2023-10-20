@@ -3,10 +3,10 @@ import 'dart:math';
 
 import 'package:dicoding_restaurant_app/data/model/restaurant.dart';
 import 'package:dicoding_restaurant_app/data/model/restaurant_list.dart';
-import 'package:dicoding_restaurant_app/pages/restaurant_list_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:logger/logger.dart';
 import 'package:rxdart/subjects.dart';
 
 import '../data/model/received_notification.dart';
@@ -58,6 +58,7 @@ class NotificationHelper {
     await flutterLocalNotificationsPlugin.initialize(
       initializationSettings,
       onDidReceiveNotificationResponse: (details) {
+        Logger logger = Logger();
         final payload = details.payload;
         if (payload != null) {
           logger.d('notification payload: $payload');

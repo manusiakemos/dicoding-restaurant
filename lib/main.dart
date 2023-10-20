@@ -7,7 +7,7 @@ import 'package:dicoding_restaurant_app/pages/home_page.dart';
 import 'package:dicoding_restaurant_app/pages/restaurant_detail_page.dart';
 import 'package:dicoding_restaurant_app/pages/restaurant_search_page.dart';
 import 'package:dicoding_restaurant_app/providers/preference_provider.dart';
-import 'package:dicoding_restaurant_app/providers/db_restaurant_provider.dart';
+import 'package:dicoding_restaurant_app/providers/restaurant_favorte_provider.dart';
 import 'package:dicoding_restaurant_app/providers/restaurant_list_provider.dart';
 import 'package:dicoding_restaurant_app/providers/restaurant_search_provider.dart';
 import 'package:dicoding_restaurant_app/providers/scheduling_provider.dart';
@@ -51,7 +51,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (BuildContext context) => DbRestaurantProvider(),
+          create: (BuildContext context) => RestaurantFavoriteProvider(),
         ),
         ChangeNotifierProvider(
           create: (BuildContext context) => RestaurantListProvider(
@@ -90,7 +90,7 @@ class MyApp extends StatelessWidget {
         initialRoute: HomePage.routeName,
         routes: {
           HomePage.routeName: (context) {
-            return const HomePage();
+            return HomePage();
           },
           RestaurantSearchPage.routeName: (context) {
             return const RestaurantSearchPage();

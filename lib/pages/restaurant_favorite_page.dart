@@ -1,5 +1,4 @@
-import 'package:dicoding_restaurant_app/pages/restaurant_list_page.dart';
-import 'package:dicoding_restaurant_app/providers/db_restaurant_provider.dart';
+import 'package:dicoding_restaurant_app/providers/restaurant_favorte_provider.dart';
 import 'package:dicoding_restaurant_app/widgets/atoms/restaurant_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -13,13 +12,12 @@ class RestaurantFavoritePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<DbRestaurantProvider>(
+    return Consumer<RestaurantFavoriteProvider>(
       builder: (
         BuildContext context,
-        DbRestaurantProvider dbRestaurantProvider,
+        RestaurantFavoriteProvider dbRestaurantProvider,
         Widget? child,
       ) {
-        logger.d(dbRestaurantProvider.state);
         if (dbRestaurantProvider.state == ResultState.loading) {
           return const Center(child: CircularProgressIndicator());
         } else if (dbRestaurantProvider.state == ResultState.noData) {

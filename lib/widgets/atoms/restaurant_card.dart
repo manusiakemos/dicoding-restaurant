@@ -4,6 +4,7 @@ import 'package:dicoding_restaurant_app/widgets/atoms/favorite_button.dart';
 import 'package:dicoding_restaurant_app/widgets/atoms/heading.dart';
 import 'package:dicoding_restaurant_app/widgets/atoms/sub_heading.dart';
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 
 import '../../data/model/restaurant.dart';
 
@@ -14,6 +15,7 @@ class RestaurantCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Logger logger = Logger();
     return GestureDetector(
       onTap: () {
         //navigate to restaurant detail page
@@ -32,59 +34,65 @@ class RestaurantCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(15),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(8),
-                      child: Stack(
-                        children: [
-                          Image.network(
-                            'https://restaurant-api.dicoding.dev/images/medium/${restaurant.pictureId}',
-                            height: 100,
-                            width: 150,
-                            fit: BoxFit.cover,
-                          ),
-                          FavoriteButton(
-                            restaurant: restaurant,
-                          ),
-                        ],
-                      ),
+            Padding(
+              padding: const EdgeInsets.all(15),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: Stack(
+                      children: [
+                        Image.network(
+                          'https://restaurant-api.dicoding.dev/images/medium/${restaurant.pictureId}',
+                          height: 100,
+                          width: 150,
+                          fit: BoxFit.cover,
+                          errorBuilder: (BuildContext context, Object value, StackTrace? trace) {
+                            logger.e('error display image');
+                            return Icon(
+                              Icons.broken_image,
+                              size: 100,
+                              color: Colors.grey[400],
+                            );
+                          },
+                        ),
+                        FavoriteButton(
+                          restaurant: restaurant,
+                        ),
+                      ],
                     ),
-                    Container(width: 20),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Container(height: 5),
-                          Heading(
-                            title: restaurant.name,
-                            size: "md",
-                          ),
-                          Container(height: 5),
-                          SubHeading(title: restaurant.city),
-                          Container(height: 10),
-                          Flex(
-                            direction: Axis.horizontal,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              const Icon(
-                                Icons.star,
-                                color: Colors.amber,
-                              ),
-                              const SizedBox(width: 5),
-                              SubHeading(title: restaurant.rating.toString()),
-                            ],
-                          )
-                        ],
-                      ),
+                  ),
+                  Container(width: 20),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Container(height: 5),
+                        Heading(
+                          title: restaurant.name,
+                          size: "md",
+                        ),
+                        Container(height: 5),
+                        SubHeading(title: restaurant.city),
+                        Container(height: 10),
+                        Flex(
+                          direction: Axis.horizontal,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            const Icon(
+                              Icons.star,
+                              color: Colors.amber,
+                            ),
+                            const SizedBox(width: 5),
+                            SubHeading(title: restaurant.rating.toString()),
+                          ],
+                        )
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ],

@@ -25,6 +25,14 @@ class SchedulingProvider extends ChangeNotifier {
         exact: true,
         wakeup: true,
       );
+
+      // return await AndroidAlarmManager.oneShotAt(
+      //   DateTime.now(),
+      //   1,
+      //   BackgroundService.callback,
+      //   exact: true,
+      //   wakeup: true,
+      // );
     } else {
       logger.d('Scheduling disabled');
       notifyListeners();
