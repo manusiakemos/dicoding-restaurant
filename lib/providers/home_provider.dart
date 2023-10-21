@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 
 import '../pages/restaurant_detail_page.dart';
-import '../utils/background_service.dart';
 import '../utils/notification_helper.dart';
 
 class HomeProvider extends ChangeNotifier {
@@ -24,9 +23,6 @@ class HomeProvider extends ChangeNotifier {
   void _setNotification() {
     Logger logger = Logger();
     try {
-      port.listen((_) async {
-        await BackgroundService.callback();
-      });
       _notificationHelper.selectedNotificationRestaurant(
         context,
         RestaurantDetailPage.routeName,
